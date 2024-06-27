@@ -48,7 +48,7 @@ def register():
 @bp.route("/login", methods=("GET", "POST"))
 def login():
     if request.method == "POST":
-        username = request.form["usernmae"]
+        username = request.form["username"]
         password = request.form["password"]
         db = get_db()
         error = None
@@ -88,7 +88,7 @@ def logout():
     return redirect(url_for("index"))
 
 
-def login_requires(view):
+def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
